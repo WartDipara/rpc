@@ -8,7 +8,11 @@ import lombok.Data;
 @Data
 public class RpcConfig {
   private String name = "rpc-master";
-  private String serverHost="localhost";
+  private String serverHost = "localhost";
   private Integer serverPort = 8080;
   private String version = "1.0";
+  /**
+   * 模擬調用
+   */
+  private boolean mock = false;
 }

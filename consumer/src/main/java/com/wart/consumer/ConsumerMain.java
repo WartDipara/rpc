@@ -12,19 +12,22 @@ public class ConsumerMain {
     RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
     System.out.println(rpcConfig);
     
-    // 靜態代理
-//    UserService userService = new UserServiceProxy();
-    //動態代理方法
-    UserService userService = ServiceProxyFactory.getProxy(UserService.class);
-    User user = new User();
-    user.setName("wart");
+    UserService userService;
+    if(rpcConfig.isMock()){
+      userService = ServiceProxyFactory.getMockProxy(UserService.class);
+      System.out.println("mock 測試環境");
+      long number = userService.getNumber();
+      System.out.println(number);
+    }
+    userService=ServiceProxyFactory.getProxy(UserService.class);
+    User user =new User();
+    user.setName("test");
     
-    
-    User newUser = userService.getUser(user);
+    User newUser=userService.getUser(user);
     if(newUser!=null){
-      System.out.println(newUser.getName());
+      System.out.println("User Name: "+ newUser.getName());
     }else{
       System.out.println("User is null");
     }
-  }
+}
 }

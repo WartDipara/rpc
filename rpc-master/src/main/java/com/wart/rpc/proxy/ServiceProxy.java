@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class ServiceProxy implements InvocationHandler {
   /**
-   * 調用代理 重寫調用方法
+   * 調用代理
    *
    * @param proxy  the proxy instance that the method was invoked on
    * @param method the {@code Method} instance corresponding to
